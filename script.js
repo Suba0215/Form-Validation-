@@ -3,8 +3,8 @@
 const form=document.getElementById('form');
 const user=document.getElementById('username');
 const email=document.getElementById('email');
-const pass=document.getElementById('pass');
-const cpass=document.getElementById('c_pass');
+const pass=document.getElementById('password');
+const cpass=document.getElementById('c_password');
 
 form.addEventListener('submit',(e)=>{
    
@@ -36,7 +36,7 @@ function validateinput(){
         success=false;
         seterror(email,'Email is required');
     }
-    else if(!validateEmail(email)){
+    else if(validateEmail(email)){
         success=false;
         seterror(email,'Enter the valid Email');
     }
@@ -92,9 +92,19 @@ function setsuccess(element){
 }
 
 function validateEmail(){
-        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return pattern.test(email);
-    }
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+}
+
+
+document.getElementById("form").addEventListener('submit',(e)=>{
+    e.preventDefault();
+    regsuccess();
+})
+
+function regsuccess(){
+    alert('Registered Successfully!!!')
+}
 
 
     
